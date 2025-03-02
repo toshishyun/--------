@@ -1,0 +1,28 @@
+project_root/
+├── common/
+│   ├── __init__.py
+│   ├── auth/                   # 共通認証モジュール
+│   │    ├── __init__.py
+│   │    └── signin_module.py   # サインイン処理（認証情報管理含む）
+│   └── utils/                  # 共通ユーティリティ関数群
+│        ├── __init__.py
+│        └── logger.py          # ログ出力など
+├── services/
+│   ├── __init__.py
+│   ├── muses/                  # MUSESに関する処理
+│   │    ├── __init__.py
+│   │    └── muses_navigate.py  # MUSESへの遷移・操作処理
+│   ├── service2/               # 他サービス用のモジュール
+│   │    ├── __init__.py
+│   │    └── service2_module.py
+│   └── service3/               # 必要に応じて追加
+│        ├── __init__.py
+│        └── service3_module.py
+├── menu/
+│   ├── __init__.py
+│   └── main_menu.py            # サインイン後のメニュー画面（CLIまたはGUI）
+├── config/                     # 設定ファイル類
+│   └── tologin.txt             # 認証情報ファイル（初回設定用）
+├── logs/                       # ログ出力用フォルダ
+├── requirements.txt            # 依存モジュールリスト
+└── README.md                   # プロジェクト概要、構成、使い方等の説明

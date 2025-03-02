@@ -1,0 +1,3162 @@
+<html><head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+
+
+
+<link rel="SHORTCUT ICON" href="/muses/campusweb/theme/default/image/favicon.ico">
+
+
+<meta name="format-detection" content="telephone=no">
+
+
+
+<title>お知らせ [MUSES]</title>
+
+
+<!-- 51,*,*,* -->
+
+
+<link rel="stylesheet" href="/muses/campusweb/theme/default/StyleSheet.css" type="text/css">
+<script type="text/javascript" src="/muses/campusweb/js/ScriptColor.js"></script>
+<script type="text/javascript" src="/muses/campusweb/js/Script.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="/muses/campusweb/theme/default/newportal/CLEditor1_4_4/jquery.cleditor.css">
+
+<link rel="stylesheet" type="text/css" href="/muses/campusweb/theme/default/newportal/jquery-ui/css/smoothness/jquery-ui-1.8.19.custom.css">
+
+
+<link rel="stylesheet" type="text/css" href="/muses/campusweb/theme/default/newportal/portal_body.css">
+<link rel="stylesheet" type="text/css" href="/muses/campusweb/theme/default/newportal/portal_ajax.css">
+<link rel="stylesheet" type="text/css" href="/muses/campusweb/theme/default/newportal/portal_logo.css">
+<link rel="stylesheet" type="text/css" href="/muses/campusweb/theme/default/newportal/portal_tabmenu.css">
+<link rel="stylesheet" type="text/css" href="/muses/campusweb/theme/default/newportal/portal_table.css">
+<link rel="stylesheet" type="text/css" href="/muses/campusweb/theme/default/newportal/portal_portlet.css">
+
+<script type="text/javascript" src="/muses/campusweb/theme/default/newportal/jquery.min.js"></script>
+<script type="text/javascript" src="/muses/campusweb/theme/default/newportal/jquery-ui/js/jquery-ui-1.8.19.custom.min.js"></script>
+<script type="text/javascript" src="/muses/campusweb/theme/default/newportal/CLEditor1_4_4/jquery.cleditor.js"></script>
+<script type="text/javascript" src="/muses/campusweb/theme/default/newportal/portal_main.js"></script>
+<script type="text/javascript" src="/muses/campusweb/theme/default/newportal/portal_common.js"></script>
+<script type="text/javascript" src="/muses/campusweb/theme/default/newportal/campus_colorpicker.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+  var session_time_out_timer = 0;
+  var session_last_acc_time = new Date();
+  var before_odd_time = 0;
+  
+  
+    
+    
+      var session_time_out = "40.0";
+    
+  
+
+  function checkTimeout() {
+    now = new Date();
+    t = now.getTime() - session_last_acc_time.getTime();
+    var minute_cnt = Math.floor(t / (60*1000));
+    if (minute_cnt < session_time_out) {
+      var odd_time = session_time_out - minute_cnt;
+      document.TopForm.timeout.value = odd_time;
+
+      
+      $("#timeout-timer").text(odd_time);
+
+      
+      $("#portaltimer").unbind("click");
+      $("#portaltimer").click(function(){
+        extendSession();
+      });
+
+      if(session_time_out_timer == 0){
+        session_time_out_timer = setInterval("checkTimeout()", 2000);
+      }
+
+      if ("5" != "" && before_odd_time != odd_time){
+        if ("5" == odd_time + ""){
+          var SubWin = window.open("/muses/campusweb/theme/default/TimeoutAlert.html", "",
+            "width=750,height=240,location=0,menubar=0,scrollbars=1,resizable=1,toolbar=0");
+        }
+      }
+      before_odd_time = odd_time;
+      
+    } else {
+      clearInterval(session_time_out_timer);
+      session_time_out_timer = 0;
+      document.TopForm.timeout.value = "0";
+
+      
+      $("#timeout-timer").text("0");
+
+      
+      $("#portaltimer").unbind("click");
+      
+      
+      if (true) {
+        var msg = "タイムアウトしました。";
+        if (msg == ""){
+          msg = "タイムアウトしました。";
+        }
+        alert(msg);
+      }
+      if (true) {
+        var SubWin = window.open("/muses/campusweb/theme/default/Timeout.html", "",
+          "width=750,height=240,location=0,menubar=0,scrollbars=1,resizable=1,toolbar=0");
+      }
+    }
+  }
+
+  function initTimeout(){
+    if (true){
+      document.TopForm.time_cnt.value = "0";
+      clearInterval(session_time_out_timer);
+      session_time_out_timer = 0;
+      session_last_acc_time = new Date();
+      before_odd_time = 0;
+      checkTimeout();
+    }
+  }
+
+
+  function extendSession() {
+    var url = getAjaxGetUrl("dummy", null);
+    $.get(url);
+    initTimeout();
+    
+  }
+
+  $(window).load(function(){
+    initTimeout();
+  });
+  
+
+
+
+
+
+var currentTabId = "home";
+
+
+
+var defWindowWidth = $(window).width();
+var defWindowHeight = $(window).height();
+var logoWidth = 1000;
+var defLeftMargin = 10;
+var defRightMargin = 11;  
+var portalLeftMargin = 0;
+var portalWidth = logoWidth;
+var tableWidth = logoWidth;
+var tabAreaWidthDef = logoWidth;
+var tabAreaWidth = tabAreaWidthDef;
+var tabMenuAreaWidth = tabAreaWidth;
+var bodyLeftMargin = 0;
+var portalAreaCount = 3;
+var resizeLock = false;
+var oldMainWidth = 0;
+
+
+var portalConf = {
+      'initPortalSettingFlg' : false,
+      'page'            : 'main',
+      'lang'            : 'ja',
+      'langDesign'      : 'ja',
+      'isDeviceLocaleSmartphone': false,
+      'templateSwitchKeySmart': false,
+      'runMode'         : '',   
+      'templateTabId'   : '*',
+      'authDesign'      : "",
+      'authDesignAll'   : "",
+      'authLayout'      : "",
+      'tabSize'         : 'M',
+      'tabWidth'        : 101,  
+      'tabHeight'       : 60,   
+      'tabIconVisible'  : 'checked',
+      'tabTextVisible'  : 'checked',
+      'tabVisible'      : 'checked',
+      'menuVisible'     : 'checked',
+      'portalUrl'       : 'campusportal.do',
+      'webUrl'          : 'campussquare.do',
+      'switchDeviceUrl' : 'campussmart.do',
+      'useIeCss3Pie'    : false,
+      'rwfHash'         : 'aa6702d55e6704b3d079cc1e7064b9c1',
+      'mainDeleteFlg'   : '0'
+};
+
+
+var staticImg = {
+      'base'            : '/muses/campusweb/theme/default/newportal/image/',
+      'sp'              : '/muses/campusweb/theme/default/newportal/image/icon/sp.gif',
+      'menuFolder'      : '/muses/campusweb/theme/default/newportal/image/design/menu_folder.png',
+      'menuFolderRight' : '/muses/campusweb/theme/default/newportal/image/util/allow_tri_b.gif',
+      'plus'            : '/muses/campusweb/theme/default/newportal/image/util/plus.png',
+      'portletBreak'    : '/muses/campusweb/theme/default/newportal/image/design/portlet_break.png',
+      'portletNoBreak'  : '/muses/campusweb/theme/default/newportal/image/design/portlet_nobreak.png',
+      'portletSet'      : '/muses/campusweb/theme/default/newportal/image/design/portlet_set.png',
+      'portletDel'      : '/muses/campusweb/theme/default/newportal/image/design/portlet_delete.png',
+      'portletUp'       : '/muses/campusweb/theme/default/newportal/image/design/allow_btn_up.png',
+      'portletDown'     : '/muses/campusweb/theme/default/newportal/image/design/allow_btn_down.png',
+      'toggleOpen'      : '/muses/campusweb/theme/default/newportal/image/util/allow_s_b.gif',
+      'toggleClose'     : '/muses/campusweb/theme/default/newportal/image/util/allow_s_r.gif'
+};
+
+
+var staticDoc = {
+	  'base'            : '/muses/campusweb/theme/default/newportal/',
+      'PIE'             : '/muses/campusweb/theme/default/newportal/pie/PIE.htc',
+      'DesginMain'      : '/muses/campusweb/theme/default/newportal/design-main-frame.html'
+};
+
+var color_palette = [
+      'ffffff', 'f6f6f6', 'eeeeee', 'dddddd', 'cccccc', 'bbbbbb', '999999', '666666',
+      'eeeedd', 'eeeecc', 'eeeebb', 'eeeeaa', 'ddddcc', 'ddddbb', 'ddddaa', 'ddcc99',
+      'ffffee', 'ffffdd', 'ffffcc', 'ffffbb', 'eeddaa', 'eecc99', 'ddbb99', 'ccaa77',
+      'ddeeff', 'ccddff', 'bbccff', 'aaccee', 'ddeeee', 'cceeee', 'bbeeee', 'aadddd',
+      'ddffdd', 'cceecc', 'bbddbb', 'aaccaa', 'ddeebb', 'bbddaa', 'aacc99', '99bb88',
+      'ffeeee', 'ffdddd', 'ffcccc', 'ffaaaa', 'eecccc', 'ffbbaa', 'eeaaaa', 'dd9999',
+      'ffeeff', 'eeddee', 'ddccdd', 'ccaaaa', 'eeeeff', 'ddddff', 'ccccee', 'aaaacc'
+];
+
+
+
+
+
+
+var tabSetting = {};
+var wfSetting = {};
+var wfConf = {};
+
+  
+  
+    tabSetting["titleRadius"] = "checked";
+  
+    tabSetting["tabBkBgColor"] = "#E7FFB5";
+  
+    tabSetting["bodyBgColor"] = "#FFFFDD";
+  
+    tabSetting["tableBgColor"] = "#FFFFDD";
+  
+    tabSetting["portletGrad"] = "";
+  
+    tabSetting["authLayoutKyoin"] = "";
+  
+    tabSetting["authLayout"] = "";
+  
+    tabSetting["authLayoutShokuin"] = "";
+  
+    tabSetting["headerWhiteText"] = "";
+  
+    tabSetting["headerBgColor"] = "#E7FFB5";
+  
+    tabSetting["tabBgColor"] = "#F6A800";
+  
+    tabSetting["headerGrad"] = "";
+  
+    tabSetting["authDesignAllShokuin"] = "";
+  
+    tabSetting["menuVisible"] = "checked";
+  
+    tabSetting["portletBorderColor"] = "#999999";
+  
+    tabSetting["tabBorderDisp"] = "checked";
+  
+    tabSetting["areaRadius"] = "";
+  
+    tabSetting["areaBorderColor"] = "#999999";
+  
+    tabSetting["footerGrad"] = "";
+  
+    tabSetting["portletShadow"] = "checked";
+  
+    tabSetting["tabBkGrad"] = "";
+  
+    tabSetting["tabBkTruns"] = "";
+  
+    tabSetting["titleDisp"] = "checked";
+  
+    tabSetting["tableTruns"] = "checked";
+  
+    tabSetting["footerWhiteText"] = "";
+  
+    tabSetting["portletBorderSize"] = "1px";
+  
+    tabSetting["authDesignGakusei"] = "";
+  
+    tabSetting["authLayoutGakusei"] = "";
+  
+    tabSetting["bodyCenter"] = "";
+  
+    tabSetting["areaMargin"] = "1px";
+  
+    tabSetting["areaTruns"] = "checked";
+  
+    tabSetting["authDesignKyoin"] = "";
+  
+    tabSetting["tableGrad"] = "";
+  
+    tabSetting["areaGrad"] = "";
+  
+    tabSetting["tabSize"] = "M";
+  
+    tabSetting["portletTruns"] = "";
+  
+    tabSetting["portletRadius"] = "checked";
+  
+    tabSetting["portletBorderDisp"] = "checked";
+  
+    tabSetting["tabBkAllWidth"] = "checked";
+  
+    tabSetting["tabGrad"] = "";
+  
+    tabSetting["portletBgColor"] = "#FFFFDD";
+  
+    tabSetting["tabIconVisible"] = "checked";
+  
+    tabSetting["areaBgColor"] = "#FFFFDD";
+  
+    tabSetting["authDesignAllGakusei"] = "";
+  
+    tabSetting["authDesignShokuin"] = "";
+  
+    tabSetting["tabAllWidth"] = "checked";
+  
+    tabSetting["tabTextVisible"] = "checked";
+  
+    tabSetting["areaShadow"] = "";
+  
+    tabSetting["bodyGrad"] = "";
+  
+    tabSetting["tabBorderColor"] = "#ddeebb";
+  
+    tabSetting["areaBorderDisp"] = "";
+  
+    tabSetting["authDesignAllKyoin"] = "";
+  
+    tabSetting["titleGrad"] = "";
+  
+    tabSetting["tabRadius"] = "checked";
+  
+    tabSetting["titleBgColor"] = "#5A9775";
+  
+    tabSetting["tabVisible"] = "checked";
+  
+    tabSetting["portalSaveCd"] = "1";
+  
+    tabSetting["authDesignAll"] = "";
+  
+    tabSetting["tabWhiteText"] = "";
+  
+    tabSetting["footerBgColor"] = "#FFFFDD";
+  
+    tabSetting["tabBkWhiteText"] = "";
+  
+    tabSetting["titleWhiteText"] = "checked";
+  
+    tabSetting["sysflg_containtsDesignSetting"] = "1";
+  
+    tabSetting["authDesign"] = "";
+  
+
+  
+  
+    
+      
+      
+
+      
+    
+  
+    
+      
+      
+
+      
+    
+  
+    
+      
+      
+
+      
+    
+  
+    
+      
+      
+
+      
+    
+  
+    
+      
+      
+
+      
+    
+  
+    
+  
+    
+      
+      
+
+      
+    
+  
+    
+      
+      
+
+      
+    
+  
+    
+      
+      
+
+      
+    
+  
+    
+      
+      
+
+      
+    
+  
+    
+      
+      
+        
+      
+
+      
+      wfSetting["wf_PTW0000012_20120826102956"] = {
+      
+        "titleRadius": "",
+      
+        
+      
+        "portletGrad": "",
+      
+        "portletTruns": "checked",
+      
+        
+      
+        "portletRadius": "",
+      
+        
+      
+        "portletBorderDisp": "",
+      
+        "portletBgColor": "#ffffee",
+      
+        "portletBorderColor": "#ccaa77",
+      
+        
+      
+        "titleGrad": "",
+      
+        "titleBgColor": "#bbddaa",
+      
+        "portletShadow": "",
+      
+        
+      
+        "titleDisp": "",
+      
+        
+      
+        "WFID_CASE_1": "((main_)([a-zA-Z0-9-_]+)(_menu))",
+      
+        "WFID_CASE_2": "(((wf_)|(nwf_))([a-zA-Z0-9-_]+)((_[0-9]{14,14}?)|(_login)|(_logout)|(_loading)|(_autoadd)))",
+      
+        "WFID_CASE_3": "(([a-zA-Z0-9]{10,10}+)(-flow))",
+      
+        "WFID_CASE_2_3": "((_[0-9]{14,14}?)|(_login)|(_logout)|(_loading)|(_autoadd))",
+      
+        "WFID_CASE_4": "dummy",
+      
+        "titleWhiteText": "",
+      
+        
+      
+        "WFID_CASE_2_1": "((wf_)|(nwf_))",
+      
+        "WFID_CASE_2_2": "([a-zA-Z0-9-_]+)",
+      
+        "portletBorderSize": "1px",
+      
+        "wfId": "nwf_PTW0000012_20120826102956",
+      
+        
+      
+      "": ""
+      };
+      
+    
+  
+    
+      
+      
+
+      
+    
+  
+    
+      
+      
+        
+      
+
+      
+      wfSetting["wf_PTW0000100-m_20180706092847"] = {
+      
+        "titleRadius": "",
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        "portletGrad": "",
+      
+        
+      
+        
+      
+        "portletTruns": "",
+      
+        
+      
+        "portletRadius": "",
+      
+        
+      
+        
+      
+        "portletBorderDisp": "",
+      
+        "portletBgColor": "#E7FFB5",
+      
+        
+      
+        
+      
+        "portletBorderColor": "#999999",
+      
+        
+      
+        
+      
+        
+      
+        "titleGrad": "",
+      
+        "titleBgColor": "#dddddd",
+      
+        "portletShadow": "",
+      
+        "titleDisp": "",
+      
+        
+      
+        
+      
+        "WFID_CASE_1": "((main_)([a-zA-Z0-9-_]+)(_menu))",
+      
+        "WFID_CASE_2": "(((wf_)|(nwf_))([a-zA-Z0-9-_]+)((_[0-9]{14,14}?)|(_login)|(_logout)|(_loading)|(_autoadd)))",
+      
+        "WFID_CASE_3": "(([a-zA-Z0-9]{10,10}+)(-flow))",
+      
+        "WFID_CASE_2_3": "((_[0-9]{14,14}?)|(_login)|(_logout)|(_loading)|(_autoadd))",
+      
+        "WFID_CASE_4": "dummy",
+      
+        "titleWhiteText": "",
+      
+        
+      
+        "WFID_CASE_2_1": "((wf_)|(nwf_))",
+      
+        "WFID_CASE_2_2": "([a-zA-Z0-9-_]+)",
+      
+        "portletBorderSize": "1px",
+      
+        "wfId": "wf_PTW0000100-m_20180706092847",
+      
+        
+      
+      "": ""
+      };
+      
+    
+  
+    
+      
+      
+        
+      
+
+      
+      wfSetting["wf_PTW0000013_20120827093353"] = {
+      
+        "titleRadius": "",
+      
+        
+      
+        "portletGrad": "",
+      
+        "portletTruns": "checked",
+      
+        
+      
+        "portletRadius": "",
+      
+        "portletBorderDisp": "",
+      
+        "portletBgColor": "#ffffee",
+      
+        "portletBorderColor": "#ccaa77",
+      
+        
+      
+        "titleGrad": "",
+      
+        "titleBgColor": "#bbddaa",
+      
+        "portletShadow": "",
+      
+        "titleDisp": "",
+      
+        "WFID_CASE_1": "((main_)([a-zA-Z0-9-_]+)(_menu))",
+      
+        "WFID_CASE_2": "(((wf_)|(nwf_))([a-zA-Z0-9-_]+)((_[0-9]{14,14}?)|(_login)|(_logout)|(_loading)|(_autoadd)))",
+      
+        "WFID_CASE_3": "(([a-zA-Z0-9]{10,10}+)(-flow))",
+      
+        "WFID_CASE_2_3": "((_[0-9]{14,14}?)|(_login)|(_logout)|(_loading)|(_autoadd))",
+      
+        "WFID_CASE_4": "dummy",
+      
+        "titleWhiteText": "",
+      
+        
+      
+        "WFID_CASE_2_1": "((wf_)|(nwf_))",
+      
+        "WFID_CASE_2_2": "([a-zA-Z0-9-_]+)",
+      
+        "portletBorderSize": "1px",
+      
+        "wfId": "nwf_PTW0000013_20120827093353",
+      
+      "": ""
+      };
+      
+    
+  
+    
+      
+      
+
+      
+    
+  
+    
+      
+      
+
+      
+    
+  
+
+
+  
+    wfConf["wf_PTW0000100-m_20180706092847"] = {wfNm: "WEBページ作成(M)", wfNmEng: "Web Page********** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/info.png"}; 
+  
+    wfConf["wf_PTW0000013_20120827093353"] = {wfNm: "ログインユーザ情報", wfNmEng: "Login use*********** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/info.png"}; 
+  
+    wfConf["wf_PTW0000012_20120826102956"] = {wfNm: "システムメニュー", wfNmEng: "Syste****** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/info.png"}; 
+  
+    wfConf["wf_PTW0005200-s_20220409131731"] = {wfNm: "新着情報", wfNmEng: "What****** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/infoman.png"}; 
+  
+    wfConf["wf_PTW0005000-s_20201207191344"] = {wfNm: "リンク", wfNmEng: "L*** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/info.png"}; 
+  
+    wfConf["main-frame"] = {wfNm: "", wfNmEng: "", icon: "/muses/campusweb/theme/default/newportal/image/"}; 
+  
+
+
+var tabCount = 23;
+var tabCountV = 23;
+var tabs = {};
+  
+    tabs["home"] = {id: "home", dispFlg: "1", tabNm: "HOME", tabNmEng: "H*** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["kj"] = {id: "kj", dispFlg: "1", tabNm: "info@MUSES　(掲示板)", tabNmEng: "Bullet******** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["gk"] = {id: "gk", dispFlg: "1", tabNm: "Personal File　(学生情報)", tabNmEng: "Stude******* ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["rs"] = {id: "rs", dispFlg: "1", tabNm: "履修(Registration)", tabNmEng: "Co**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["cr"] = {id: "cr", dispFlg: "1", tabNm: "時間割参照", tabNmEng: "Ta*** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["kh"] = {id: "kh", dispFlg: "1", tabNm: "休補・補講・教室変更等", tabNmEng: "Sch***** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["kh2"] = {id: "kh2", dispFlg: "1", tabNm: "休講・補講等情報参照", tabNmEng: "Ta*** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["aa"] = {id: "aa", dispFlg: "1", tabNm: " 　出欠・　 代替対応(Attendance)", tabNmEng: "Ta*** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["en"] = {id: "en", dispFlg: "1", tabNm: "授業アンケート(Survey)", tabNmEng: "Enq**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["te"] = {id: "te", dispFlg: "1", tabNm: "試験", tabNmEng: "Ta*** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["si"] = {id: "si", dispFlg: "1", tabNm: "成績(Grade)", tabNmEng: "Gr*** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["ht"] = {id: "ht", dispFlg: "1", tabNm: "見込みチェック", tabNmEng: "Ta*** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["li"] = {id: "li", dispFlg: "1", tabNm: "諸資格", tabNmEng: "Ta*** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["rc"] = {id: "rc", dispFlg: "1", tabNm: "履修カルテ", tabNmEng: "Ta*** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["re"] = {id: "re", dispFlg: "1", tabNm: "キャリア支援", tabNmEng: "Rec**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["gy"] = {id: "gy", dispFlg: "1", tabNm: "学友会", tabNmEng: "Ta*** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["sb"] = {id: "sb", dispFlg: "1", tabNm: "シラバス(Syllabus)", tabNmEng: "Syllabus********** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["kg"] = {id: "kg", dispFlg: "1", tabNm: "教員業績", tabNmEng: "Ta*** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["co"] = {id: "co", dispFlg: "1", tabNm: "教職員連絡先検索機能", tabNmEng: "Tab27", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["sr"] = {id: "sr", dispFlg: "1", tabNm: "科研費管理", tabNmEng: "Ta*** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["en2"] = {id: "en2", dispFlg: "1", tabNm: "一般アンケート", tabNmEng: "Ta*** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["mi"] = {id: "mi", dispFlg: "1", tabNm: "M.I.C.(学生証・職員証他)", tabNmEng: "Ta*** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+    tabs["ot"] = {id: "ot", dispFlg: "1", tabNm: "その他", tabNmEng: "Ot*** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" };
+  
+
+
+var menus = {};
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "2", dispFlg: "0", menuId: "MSG0000001", menuNm: "ポータルメニュー", menuNmEng: "Porta****** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "", funcNm: "", funcNmEng: "", url: "", target: "", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "USW0009500", menuNm: "お知らせ", menuNmEng: "お知らせ画面初期表示", icon: "/muses/campusweb/theme/default/newportal/image/icon/info.png", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "USW0009500", funcNm: "お知らせ画面初期表示", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "0", menuId: "MOD-INFO", menuNm: "ログイン画面お知らせ編集", menuNmEng: "Login scre************ ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/keiji.png", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "PTW0000100", funcNm: "WEBページ作成", funcNmEng: "Web Page Create", url: "", target: "main", bookmarkFlg: "0", portletFlg: "1", authFlg: true};
+  menus["home"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "KJW0001100", menuNm: "info@MUSES参照", menuNmEng: "Bullet******** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "KJW0001100", funcNm: "info@MUSES参照", funcNmEng: "Bulletin board", url: "", target: "main", bookmarkFlg: "1", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "KJW5301000", menuNm: "info@MUSES参照（研究指導・担任用）", menuNmEng: "掲示板（研究******* ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "KJW5301000", funcNm: "掲示板（研究指導・担任用）", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "KJW0001000", menuNm: "info@MUSES登録", menuNmEng: "Bulletin boar************** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "KJW0001000", funcNm: "info@MUSES登録", funcNmEng: "Bulletin board registration", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "KJW5301100", menuNm: "メール受信設定", menuNmEng: "メール**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "KJW5301100", funcNm: "メール受信設定", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "KJW0001300", menuNm: "テンプレート管理", menuNmEng: "Setting********* ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "KJW0001300", funcNm: "テンプレート管理", funcNmEng: "Setting template to be posted", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "KJW0001400", menuNm: "グループ管理", menuNmEng: "グル**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "KJW0001400", funcNm: "グループ管理", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "2", dispFlg: "1", menuId: "kj1", menuNm: "Q & A（学生用）", menuNmEng: "新しい**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "", funcNm: "", funcNmEng: "", url: "/muses/pages/qanda/keijibanQandA.html", target: "_blank", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["kj"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "CHW0001010", menuNm: "登録・参照（担任・研究指導用）", menuNmEng: "Student information cart************************** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/chart.png", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "CHW0001010", funcNm: "学生ポートフォリオ（担任・研究指導用）", funcNmEng: "Student information carte/student register informa", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "2", dispFlg: "1", menuId: "ch1", menuNm: "Q & A（学生用）", menuNmEng: "新しいメニュー", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "", funcNm: "", funcNmEng: "", url: "/muses/pages/qanda/PersonalfileQandA.html", target: "_blank", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["gk"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "RSW0001000", menuNm: "履修登録・確認", menuNmEng: "Course re********** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "RSW0001000", funcNm: "履修登録・確認", funcNmEng: "", url: "", target: "main", bookmarkFlg: "1", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "RSW0001001", menuNm: "履修登録・確認(担任)", menuNmEng: "履修登録・****** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "RSW0001001", funcNm: "履修登録・確認(担任)", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "RSW0001002", menuNm: "履修登録・確認(研究指導教員)", menuNmEng: "履修登録・確認******** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "RSW0001002", funcNm: "履修登録・確認(研究指導教員)", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "RSW0001100", menuNm: "受講者名簿(Student List)", menuNmEng: "Clas****** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_download2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "RSW0001100", funcNm: "受講者名簿出力", funcNmEng: "Output of Course Attendance", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "RSW5301000", menuNm: "履修未登録者一覧", menuNmEng: "履修未***** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/check1.png", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "RSW5301000", funcNm: "履修未登録者一覧", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "RSW5301200", menuNm: "履修登録科目一覧", menuNmEng: "履修確***** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/check1.png", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "RSW5301200", funcNm: "履修登録科目一覧", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "2", dispFlg: "1", menuId: "rs1", menuNm: "Q & A（学生用）", menuNmEng: "新しい**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "", funcNm: "", funcNmEng: "", url: "/muses/pages/qanda/risyuQandA.html", target: "_blank", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["rs"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "2", dispFlg: "1", menuId: "cr1", menuNm: "前期時間割参照", menuNmEng: "新しいメニュー", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "", funcNm: "", funcNmEng: "", url: "/muses/pages/jikanwari/zenki/hyojun1.htm", target: "_blank", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "2", dispFlg: "1", menuId: "cr2", menuNm: "後期時間割参照", menuNmEng: "新しいメニュー", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "", funcNm: "", funcNmEng: "", url: "/muses/pages/jikanwari/kouki/hyojun2.htm", target: "_blank", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["cr"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "KHW0001000", menuNm: "休講・補講等情報登録", menuNmEng: "Cancell********* ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "KHW0001000", funcNm: "休講・補講等情報登録", funcNmEng: "Entry of Class Cancellation  Up Class", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["kh"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "KHW0001100", menuNm: "休講・補講等一覧参照", menuNmEng: "Reference  of Class ********************** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "KHW0001100", funcNm: "休講・補講等一覧参照", funcNmEng: "Reference  of Class Cancellation  Up Class", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "KHW5301400", menuNm: "授業日程表参照", menuNmEng: "授業日**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "KHW5301400", funcNm: "授業日程表参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "2", dispFlg: "1", menuId: "kh1", menuNm: "Q & A（学生用）", menuNmEng: "新しい**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "", funcNm: "", funcNmEng: "", url: "/muses/pages/qanda/kyuhoQandA.html", target: "_blank", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["kh2"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "AAW5301300", menuNm: "出欠情報登録・修正（input）", menuNmEng: "出欠情報***** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "AAW5301300", funcNm: "出欠情報登録・修正", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "AAW5302400", menuNm: "キーナンバー設定（Key Number）", menuNmEng: "担当科目キーワード設定", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "AAW5302400", funcNm: "担当科目キーワード設定", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "AAW5302100", menuNm: "出欠情報参照(担任)", menuNmEng: "出欠情報****** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "AAW5302100", funcNm: "出欠情報参照(担任)", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "AAW5302200", menuNm: "出欠情報参照(研究指導教員)", menuNmEng: "出欠情報参照******** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "AAW5302200", funcNm: "出欠情報参照(研究指導教員)", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "AAW5301000", menuNm: "成績評価対象資格入力・参照(Eligibility)", menuNmEng: "受験資格入力・参照(************ ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "AAW5301000", funcNm: "成績評価対象資格入力・参照(Eligibility)", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "0", menuId: "AAW5301100", menuNm: "成績評価対象資格参照", menuNmEng: "受験資格参照", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "AAW5301100", funcNm: "成績評価対象資格参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "AAW5302000", menuNm: "授業代替対応一覧参照", menuNmEng: "授業公***** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "AAW5302000", funcNm: "授業代替対応一覧参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "2", dispFlg: "1", menuId: "aa1", menuNm: "Q & A（学生用）", menuNmEng: "新しい**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "", funcNm: "", funcNmEng: "", url: "/muses/pages/qanda/syukketsuQandA.html", target: "_blank", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["aa"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "ENW5301200", menuNm: "回答確認・コメント入力(Comments)", menuNmEng: "回答確認・****** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "ENW5301200", funcNm: "回答確認・コメント入力", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "ENW5301300", menuNm: "回答状況（担任用）", menuNmEng: "回答状況***** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "ENW5301300", funcNm: "回答状況（担任用）", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "0", menuId: "ENW5301400", menuNm: "回答", menuNmEng: "** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "ENW5301400", funcNm: "回答", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "0", menuId: "ENW5301500", menuNm: "集計結果参照", menuNmEng: "集計**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "ENW5301500", funcNm: "集計結果参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "ENW5301700", menuNm: "集計結果参照(平均)", menuNmEng: "集計結果****** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "ENW5301700", funcNm: "集計結果参照(平均)", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "ENW5301800", menuNm: "集計結果参照(GPA等)", menuNmEng: "集計結果参******* ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "ENW5301800", funcNm: "集計結果参照(GPA等)", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "ENW5301900", menuNm: "集計結果参照（学科別）", menuNmEng: "集計結果参****** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "ENW5301900", funcNm: "集計結果参照（学科別）", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["en"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "SIW5301600", menuNm: "試験監督参照", menuNmEng: "試験**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "SIW5301600", funcNm: "試験監督参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "SIW5301500", menuNm: "担当科目実施内容参照", menuNmEng: "担当科目****** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "SIW5301500", funcNm: "担当科目実施内容参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "SIW5301700", menuNm: "試験時間割参照(全体)", menuNmEng: "試験時**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "SIW5301700", funcNm: "試験時間割参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "SIW5301200", menuNm: "レポート題目入力・参照", menuNmEng: "レポート題****** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "SIW5301200", funcNm: "レポート題目入力・参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "SIW5301300", menuNm: "その他実施内容入力・参照", menuNmEng: "その他実施******* ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "SIW5301300", funcNm: "その他実施内容入力・参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "SIW5301900", menuNm: "追・再試験登録状況参照", menuNmEng: "追・再試験****** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "SIW5301900", funcNm: "追・再試験登録状況参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "SIW5302201", menuNm: "再試験手続状況一覧(担任)", menuNmEng: "再試験手続き******** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "SIW5302201", funcNm: "再試験手続き状況一覧(担任)", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "SIW5302202", menuNm: "再試験手続状況一覧(研究指導教員)", menuNmEng: "再試験手続き状況********** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "SIW5302202", funcNm: "再試験手続き状況一覧(研究指導教員)", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "2", dispFlg: "1", menuId: "si2", menuNm: "Q & A（学生用）", menuNmEng: "新しい**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "", funcNm: "", funcNmEng: "", url: "/muses/pages/qanda/shikenQandA.html", target: "_blank", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["te"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "SIW5301000", menuNm: "成績結果入力・参照(Input)", menuNmEng: "成績結果***** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "SIW5301000", funcNm: "成績結果入力・参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "0", menuId: "SIW5301100", menuNm: "個人成績参照", menuNmEng: "個人**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "SIW5301100", funcNm: "個人成績参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "2", dispFlg: "1", menuId: "si1", menuNm: "Q & A（学生用）", menuNmEng: "新しい**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "", funcNm: "", funcNmEng: "", url: "/muses/pages/qanda/seisekiQandA.html", target: "_blank", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["si"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "0", menuId: "HTW0001000", menuNm: "卒業・資格取得　見込チェック", menuNmEng: "自*** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "HTW0001000", funcNm: "卒業・資格取得　見込チェック", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "2", dispFlg: "1", menuId: "ht1", menuNm: "Q & A（学生用）", menuNmEng: "新しい**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "", funcNm: "", funcNmEng: "", url: "/muses/pages/qanda/mikomichekkuQandA.html", target: "_blank", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["ht"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "HTW5301100", menuNm: "実習日程参照", menuNmEng: "実習**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "HTW5301100", funcNm: "実習日程参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "HTW5301500", menuNm: "資格見込チェック(課程履修)", menuNmEng: "資格見込チェ******** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_info3.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "HTW5301500", funcNm: "資格見込チェック(課程履修)", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "HTW5301501", menuNm: "資格見込チェック(所属条件)", menuNmEng: "資格見込チェ******** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_info3.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "HTW5301501", funcNm: "資格見込チェック(所属条件)", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "HTW5301300", menuNm: "資格履修者参照", menuNmEng: "資格履**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer1.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "HTW5301300", funcNm: "資格履修者参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "2", dispFlg: "1", menuId: "li1", menuNm: "Q & A（学生用）", menuNmEng: "新しい**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "", funcNm: "", funcNmEng: "", url: "/muses/pages/qanda/syoshikakuQandA.html", target: "_blank", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["li"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "RCW5301000", menuNm: "教員コメント入力", menuNmEng: "教員コ***** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "RCW5301000", funcNm: "教員コメント入力", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "RCW5301100", menuNm: "課題事項入力", menuNmEng: "課題**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "RCW5301100", funcNm: "課題事項入力", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "2", dispFlg: "1", menuId: "rc1", menuNm: "Q & A（学生用）", menuNmEng: "新しい**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "", funcNm: "", funcNmEng: "", url: "/muses/pages/qanda/risyukarteQandA.html", target: "_blank", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["rc"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "REW0001000", menuNm: "企業参照", menuNmEng: "企*** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "REW0001000", funcNm: "企業参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "REW0001100", menuNm: "求人参照", menuNmEng: "求*** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "REW0001100", funcNm: "求人参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "REW5302400", menuNm: "新着求人参照", menuNmEng: "新着**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "REW5302400", funcNm: "新着求人参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "REW5301000", menuNm: "セミナー参照", menuNmEng: "セミ**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "REW5301000", funcNm: "セミナー参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "REW0001500", menuNm: "OG・OB等参照", menuNmEng: "OG・***** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "REW0001500", funcNm: "OG・OB等参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "REW5301700", menuNm: "適性検査結果参照", menuNmEng: "適正検***** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "REW5301700", funcNm: "適性検査結果参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "2", dispFlg: "0", menuId: "re2", menuNm: "統計資料_活動報告", menuNmEng: "新しいメニュー", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "", funcNm: "", funcNmEng: "", url: "/muses/pages/career/nendo_katudou.htm", target: "_blank", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "2", dispFlg: "0", menuId: "re3", menuNm: "統計資料_進路状況", menuNmEng: "新しいメニュー", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "", funcNm: "", funcNmEng: "", url: "/muses/pages/career/nendo_shinro.htm", target: "_blank", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "2", dispFlg: "1", menuId: "re1", menuNm: "Q & A（学生用）", menuNmEng: "使用方**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "", funcNm: "", funcNmEng: "", url: "/muses/pages/qanda/kyariaQandA.html", target: "_blank", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["re"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "2", dispFlg: "1", menuId: "ch1", menuNm: "Q & A（学生用）", menuNmEng: "新しい**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "", funcNm: "", funcNmEng: "", url: "/muses/pages/qanda/gakuyuukaiQandA.html", target: "_blank", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["gy"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "SYW0001000", menuNm: "シラバス参照(View)", menuNmEng: "Syllabu********* ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "SYW0001000", funcNm: "シラバス参照(View)", funcNmEng: "Syllabus inquiry", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "SYW0001200", menuNm: "シラバス入力(Entry)", menuNmEng: "syllabus r*********** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "SYW0001200", funcNm: "シラバス入力(Entry)", funcNmEng: "syllabus registration", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "2", dispFlg: "1", menuId: "sy1", menuNm: "Q & A（学生用）", menuNmEng: "新しい**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "", funcNm: "", funcNmEng: "", url: "/muses/pages/qanda/shirabasuQandA.html", target: "_blank", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["sb"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "KGW5301100", menuNm: "教員業績参照", menuNmEng: "教員**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "KGW5301100", funcNm: "教員業績参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "KGW5301300", menuNm: "教育研究業績登録", menuNmEng: "教育研***** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "KGW5301300", funcNm: "教育研究業績登録", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "2", dispFlg: "1", menuId: "kg1", menuNm: "Q & A（学生用）", menuNmEng: "新しい**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "", funcNm: "", funcNmEng: "", url: "/muses/pages/qanda/kyouingyousekiQandA.html", target: "_blank", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["kg"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "COW5301000", menuNm: "教職員連絡先検索機能", menuNmEng: "教職員連絡先検索機能", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "COW5301000", funcNm: "教職員連絡先検索機能", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["co"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "SRW5301000", menuNm: "科研費執行状況参照(個人)", menuNmEng: "科研費執行状******* ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "SRW5301000", funcNm: "科研費執行状況参照(個人)", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "SRW5301100", menuNm: "科研費執行状況参照(代表課題)", menuNmEng: "科研費執行状況******** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "SRW5301100", funcNm: "科研費執行状況参照(代表課題)", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "SRW5301200", menuNm: "補助事業者情報設定", menuNmEng: "補助事業***** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "SRW5301200", funcNm: "補助事業者情報設定", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["sr"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "ENW5302200", menuNm: "回答", menuNmEng: "** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "ENW5302200", funcNm: "回答", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "ENW5302300", menuNm: "集計結果参照", menuNmEng: "集計**** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_refer4.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "ENW5302300", funcNm: "集計結果参照", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["en2"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "MCW5301000", menuNm: "M.I.Cパスワード設定・変更", menuNmEng: "M.I.Cパス******** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "MCW5301000", funcNm: "M.I.Cパスワード設定・変更", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["mi"] = menu;
+}
+
+if (true){
+  var menu = []; var idx =0;
+  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW5309999", menuNm: " ", menuNmEng: "メニュー初期表示用", icon: "/muses/campusweb/theme/default/newportal/image/icon/sp.gif", folderNm: "", folderNmEng: "", folderOpenFlg: "0", funcId: "PTW5309999", funcNm: "メニュー初期表示用", funcNmEng: "", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "0", menuId: "PTW0001000", menuNm: "リンクグループ登録", menuNmEng: "Web Li******** ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "PTW0001000", funcNm: "リンクグループ登録　リンクグループ一覧", funcNmEng: "Web Link Group", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};  menu[idx++] = {menuKbnCd: "1", dispFlg: "1", menuId: "PTW0001100", menuNm: "リンク登録", menuNmEng: "Web Link En************* ENG", icon: "/muses/campusweb/theme/default/newportal/image/icon/func_entry_green2.gif", folderNm: "", folderNmEng: " ENG", folderOpenFlg: "0", funcId: "PTW0001100", funcNm: "リンク登録　リンク一覧", funcNmEng: "Web Link Entry Link List", url: "", target: "main", bookmarkFlg: "0", portletFlg: "0", authFlg: true};
+  menus["ot"] = menu;
+}
+
+
+
+var sysMenus = [];
+if (true){
+  var idx =0;
+
+}
+
+
+  
+
+  var windowResizeTimer = false;
+  function resizeEvent(){
+    if (windowResizeTimer != false) {
+      clearTimeout(windowResizeTimer);
+    }
+    windowResizeTimer = setTimeout(function() {
+      resizePortal(true);
+    }, 300);
+  }
+
+
+
+
+
+  function hoverMenuOver(){
+    $(this).stop(true);
+    $(this).css({"text-decoration": "underline"});
+  }
+  function hoverMenuOut(){
+    $(this).css({"text-decoration": ""});
+  }
+  function hoverTabOver(){
+    $(this).stop(true);
+    $(this).css({"text-decoration": "underline"});
+    
+    //$(this).find("img:visible").effect("bounce", "", "fast");
+    
+    $(this).find("img").animate({"opacity": "0.3"}, "fast",
+      function(){
+        $(this).animate({"opacity": "1.0"}, "fast",
+          function(){
+            $(this).css({"opacity": ""});
+          })
+      });
+  }
+  function hoverTabOut(){
+    $(this).stop(true);
+    $(this).css({"text-decoration": ""});
+    $(this).find("img").css({"opacity": ""});
+  }
+
+
+  function initSafe(){
+
+
+
+    if (tabSetting.tabSize == '' || typeof tabSetting.tabSize == 'undefined'){
+      tabSetting.tabSize = 'L';
+    }
+    if (tabSetting.tabIconVisible == null || typeof tabSetting.tabIconVisible == 'undefined'){
+      tabSetting.tabIconVisible = 'checked';
+    }
+    if (tabSetting.tabTextVisible == null || typeof tabSetting.tabTextVisible == 'undefined'){
+      tabSetting.tabTextVisible = 'checked';
+    }
+    if (tabSetting.tabVisible == null || typeof tabSetting.tabVisible == 'undefined'){
+      tabSetting.tabVisible = 'checked';
+    }
+    if (tabSetting.menuVisible == null || typeof tabSetting.menuVisible == 'undefined'){
+      tabSetting.menuVisible = 'checked';
+    }
+
+
+}
+  
+
+  $(document).ready(function(){
+    initSafe();
+
+
+
+    $("#body-span").width(portalWidth);
+    $("#body-area").width(tableWidth);
+
+
+
+    
+    
+    
+    $(document).find("input:button, input:submit, input:reset, div.button, button").button();
+
+
+
+    
+    $(window).resize(function(){
+      resizeEvent();
+    });
+
+    
+    
+  
+    var tabTAG = "tabtable";
+  
+  
+      $("#" + tabTAG + " .tabcell").click(function(){
+        var tabId = $(this).attr("id").substring(4);
+        if (tabId != 'blank'){
+          reloadPortal(tabId);
+        }
+    }).hover(
+      hoverTabOver, hoverTabOut
+    );
+
+
+
+    
+    $("#tabmenu-ul").find("li:not(.menu-nolink)").hover(
+      hoverMenuOver, hoverMenuOut
+    );
+
+
+    
+    $("div.portalarea").each(function(){
+      var _this = $(this);
+      var _thisid = _this.attr("id");
+      var _thisP = _this.parent();
+      
+      if (_this.children("div.portlet").size() <= 0){
+        // IE9 turning
+        if (jQuery.browser.msie && jQuery.browser.version == 9){
+          $("#"+ _thisid +"-sp").parent().css({"visibility": "hidden", "height": "0px"});
+          if (_this.hasClass("portalarea-row")){
+            _thisP.parent().css({"visibility": "hidden", "height": "0px"});
+          } else {
+            _thisP.css({"visibility": "hidden", "height": "0px"});
+          }
+          
+        } else {
+          $("#"+ _thisid +"-sp").parent().hide();
+          if (_this.hasClass("portalarea-row")){
+            _thisP.parent().hide();
+          } else {
+            _thisP.hide();
+          }
+        }
+      }
+    });
+
+
+
+    portalAreaCount = $("#portalrow-body .portalarea:visible").size();
+
+    
+    setPortalSetting();
+
+  
+    
+    resizePortalTabs();
+  
+
+    
+    //showMenu("home", true, portalConf.lang);
+
+
+    
+    
+
+
+
+
+    
+
+
+
+
+
+
+    
+    
+
+    var targetDiv = $("#portal-setting-targetbox");
+    targetDiv.find("#authCd").val('51');
+    if (targetDiv.find("#authCd").prop("selectedIndex") == -1){
+      targetDiv.find("#authCd").prop("selectedIndex", 0);
+    }
+    targetDiv.find("#groupCd").val('*');
+    if (targetDiv.find("#groupCd").prop("selectedIndex") == -1){
+      targetDiv.find("#groupCd").prop("selectedIndex", 0);
+    }
+    targetDiv.find("#userNm").val('*');
+    targetDiv.find("#templateNm").val('*');
+    $("#portal-setting-change-page").val('main');
+
+    
+    
+
+
+  });
+  
+</script>
+
+
+
+
+<style type="text/css">
+body.logout { background-color: #FFFFDD; }
+#header-span {  background: none; background-image: none; background-color: transparent; }
+#logo-span {  background: none; background-image: none; background-color: #E7FFB5; }
+#body-span {  background: none; background-image: none; background-color: #FFFFDD; }
+#footer-span {  background: none; background-image: none; background-color: #FFFFDD; }
+#portal-body { background-color: #FFFFDD; }
+#tabtable { width: 1587px; }
+#tabtable .tabcell { width: 69px; }
+#tabtable .tabcell img { width: 32px; height: 32px; margin-left: 18px; }
+#tabmenu-area { border: 1px #ddeebb solid; }
+.tabmenu-sub-ul { border: 1px #ddeebb solid; }
+#tabtable .tabcell-sel { border-top: 1px #ddeebb solid; }
+#tabtable .tabcell-sel { border-left: 1px #ddeebb solid; }
+#tabtable .tabcell-sel { border-right: 1px #ddeebb solid; }
+#tabtable .tabcell-sel { border-bottom: 1px #F6A800 solid; }
+#tabtable {  background: none; background-image: none; background-color: transparent; }
+#tab-span {  background: none; background-image: none; background-color: #E7FFB5; }
+#tab-span { color: black; }
+#tabtable .tabcell-sel {  background: none; background-image: none; background-color: #F6A800; }
+#tabmenu-area {  background: none; background-image: none; background-color: #F6A800; }
+.tabmenu-sub-ul { background-color: #F6A800; }
+#tabtable .tabcell-sel { color: black; }
+#tabmenu-area { color: black; }
+.tabmenu-sub-ul { color: black; }
+#tabtable .tabcell-sel { border-radius: 10px 10px 0px 0px; }
+#tabtable .tabcell-sel { -webkit-border-radius: 10px 10px 0px 0px; }  /* for Webkit */
+#body-area {  background: none; background-image: none; background-color: transparent; }
+#portaltable .portalarea {  background: none; background-image: none; background-color: transparent; }
+#portaltable .portalarea { border: 1px transparent solid; }
+#portaltable .portalarea-row-sp .space { height: 1px; }
+#portaltable .portalarea-sp .space { width: 1px; }
+.portlet {  background: none; background-image: none; background-color: #FFFFDD; }
+.portlet { color: black; }
+.portlet { border: 1px #999999 solid; }
+.portlet { border-radius: 10px 10px 10px 10px; }
+.portlet { -webkit-border-radius: 10px 10px 10px 10px; }  /* for Webkit */
+.portlet { box-shadow: 3px 3px 3px #000; }
+.portlet { -webkit-box-shadow: 3px 3px 3px #000; }  /* for Webkit */
+.portlet-title { display: block; }
+.portlet-title-linker { display: block; }
+.portlet-title {  background: none; background-image: none; background-color: #5A9775; }
+.portlet-title { border-radius: 10px 10px 10px 10px; }
+.portlet-title { -webkit-border-radius: 10px 10px 10px 10px; }  /* for Webkit */
+.portlet-title { color: white; }
+body.logout { background-color: null; }
+#wf_PTW0000012_20120826102956-box   {  background: none; background-image: none; background-color: transparent; }
+#wf_PTW0000012_20120826102956-box   { color: inherit; }
+#wf_PTW0000012_20120826102956-box   { border: 1px transparent solid; }
+#wf_PTW0000012_20120826102956-box   { border-radius: 0; }
+#wf_PTW0000012_20120826102956-box   { -webkit-border-radius: 0; }  /* for Webkit */
+#wf_PTW0000012_20120826102956-box   { box-shadow: none; }
+#wf_PTW0000012_20120826102956-box   { -webkit-box-shadow: none; }  /* for Webkit */
+#wf_PTW0000012_20120826102956-box .portlet-title { display: none; }
+#wf_PTW0000012_20120826102956-box .portlet-title-linker { display: none; }
+body.logout { background-color: null; }
+#wf_PTW0000100-m_20180706092847-box   {  background: none; background-image: none; background-color: #E7FFB5; }
+#wf_PTW0000100-m_20180706092847-box   { color: black; }
+#wf_PTW0000100-m_20180706092847-box   { border: 1px transparent solid; }
+#wf_PTW0000100-m_20180706092847-box   { border-radius: 0; }
+#wf_PTW0000100-m_20180706092847-box   { -webkit-border-radius: 0; }  /* for Webkit */
+#wf_PTW0000100-m_20180706092847-box   { box-shadow: none; }
+#wf_PTW0000100-m_20180706092847-box   { -webkit-box-shadow: none; }  /* for Webkit */
+#wf_PTW0000100-m_20180706092847-box .portlet-title { display: none; }
+#wf_PTW0000100-m_20180706092847-box .portlet-title-linker { display: none; }
+body.logout { background-color: null; }
+#wf_PTW0000013_20120827093353-box   {  background: none; background-image: none; background-color: transparent; }
+#wf_PTW0000013_20120827093353-box   { color: inherit; }
+#wf_PTW0000013_20120827093353-box   { border: 1px transparent solid; }
+#wf_PTW0000013_20120827093353-box   { border-radius: 0; }
+#wf_PTW0000013_20120827093353-box   { -webkit-border-radius: 0; }  /* for Webkit */
+#wf_PTW0000013_20120827093353-box   { box-shadow: none; }
+#wf_PTW0000013_20120827093353-box   { -webkit-box-shadow: none; }  /* for Webkit */
+#wf_PTW0000013_20120827093353-box .portlet-title { display: none; }
+#wf_PTW0000013_20120827093353-box .portlet-title-linker { display: none; }
+</style>
+
+
+
+</head>
+
+
+
+
+
+
+<body id="portal-body">
+
+
+
+    
+    
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    <div id="portlet-setting-param-dlg" class="portal-setting-dlg">
+        <div class="loading" id="portal-setting-param-dlg-box-loading"></div>
+        <div id="portal-setting-param-dlg-box">
+            
+        </div>
+    </div>
+
+
+<div id="header-span" style="width: 1838px; position: fixed; z-index: 99; left: 0px;">
+    <div id="header-area">
+      
+      <div id="logo-span">
+            
+            
+            
+            
+            
+              <div id="area-top1-parent" style="display: none;">
+              <div id="area-top1" class="portalarea">
+                  
+                  
+                  
+                      
+                  
+                      
+                  
+                      
+                  
+                      
+                  
+                      
+                  
+                      
+                  
+                  <div class="portlet-break end-of-dummy" id="end-of-dummy-header-top1" style="height: 1px;"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></div>
+              </div>
+              </div>
+            
+
+          <div id="logo-area" style="width: 1817px; margin-left: 15px; margin-right: inherit;">
+
+            
+            <form name="TopForm" style="margin: 0px; padding: 0px;" action="/muses/campusweb/campussquare.do">
+                <input type="hidden" name="time_cnt" value="0">
+                <input type="hidden" name="_eventId">
+                <input type="hidden" name="_flowExecutionKey">
+                <input type="hidden" name="timeout" id="timeout" value="40">
+            </form>
+
+            
+            
+              <div id="area-h1-parent">
+              <div id="area-h1" class="portalarea">
+                  
+                  
+                  
+                      
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                              <div class="portlet portlet-m" id="wf_PTW0000100-m_20180706092847-box">
+                                  <div class="loading" id="wf_PTW0000100-m_20180706092847-loading" style=""></div>
+                                  <div class="portlet-box" id="wf_PTW0000100-m_20180706092847">
+                                      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="portlet-title clearfix" id="wf_PTW0000100-m_20180706092847-title">
+
+
+    <img src="/muses/campusweb/theme/default/newportal/image/icon/info.png"><span>WEBページ作成(M)</span>
+
+
+
+
+    
+    <input type="hidden" name="wfNm" id="wfNm" value="WEBページ作成(M)">
+    <input type="hidden" name="wfNmEng" id="wfNmEng" value="Web Page********** ENG">
+    <input type="hidden" name="wfIcon" id="wfIcon" value="icon/info.png">
+    <input type="hidden" name="wfDeleteFlg" id="wfDeleteFlg" value="1">
+</div>
+
+
+
+
+
+
+
+    
+        
+        
+        
+            
+            
+            
+            
+            
+            
+            <div id="webpage-contents" class="portlet-contents webpage-contents"><div style="width: 400px; margin-top:-5px; margin-right: 5px; font-size:200%;font-weight: bold;"><img src="/muses/campusweb/theme/default/newportal/image/icon/menulogo4.png" style="margin-top: -2px;" width="200" height="40" align="left"><span><span style="color:#38d;"></span><span style="color:#38d;"></span></span></div></div>
+            
+            
+        
+        
+        
+        
+            
+            
+            
+            <div id="webpage-menu-box" class="clearfix portlet-title-linker">
+            
+                
+                    
+                    
+                    <div class="left"><a href="javascript:void(0);" id="webpage-list"><img alt="　" src="/muses/campusweb/theme/default/newportal/image/design/list.png"></a></div>
+                    
+                      
+                      
+                      <div class="left">&nbsp;<a href="javascript:void(0);" id="webpage-bepage"><img alt="　" src="/muses/campusweb/theme/default/newportal/image/util/allow_s_l.gif"><span>前へ</span></a></div>
+                    
+                    
+                
+            
+            
+            </div>
+        
+    
+
+    <script type="text/javascript">
+    
+        $("#wf_PTW0000100-m_20180706092847 #webpage-list").unbind("click").click(function(){
+          var x = '<div id="wf_PTW0000100-m_20180706092847-webpage-dlg" class="portal-setting-dlg display-hide">'
+                + '<div class="loading" id="wf_PTW0000100-m_20180706092847-webpage-dlg-box-loading"></div>'
+                + '<div id="wf_PTW0000100-m_20180706092847-webpage-dlg-box">'
+                + '</div></div>';
+          
+          $("#wf_PTW0000100-m_20180706092847").append(x);
+
+        
+          var w = 600;
+          var h = 400;
+          var mw = w;
+          var mh = h;
+        
+        
+          
+          $("#wf_PTW0000100-m_20180706092847-webpage-dlg").dialog({
+              autoOpen: true,
+              modal: true,
+            
+              minWidth: (mw),
+              minHeight: (mh),
+              title: ('ページ履歴'),
+              buttons: {
+                "OK": function(event) {
+                  $(this).dialog("close");
+                }
+              },
+              open: function(event) {
+                  $(this).parent().parent().find(".ui-dialog").next(".ui-widget-overlay").css("background", "");
+                  $(this).parent().find(".ui-dialog-titlebar-close").hide();
+                  
+                  var cf = {};
+                  cf.wfId = "wf_PTW0000100-m_20180706092847";
+                  cf.event = "doPageList";
+                  cf.subEv = "list";
+                  
+                  loadPortletPost('wf_PTW0000100-m_20180706092847-webpage-dlg-box', null, {
+                    customHidden: (cf)
+                  });
+              },
+              close: function(){
+                  $(this).dialog("destroy");
+                  $(this).remove();
+              }
+          });
+        });
+        
+        
+        
+            $("#wf_PTW0000100-m_20180706092847 #webpage-bepage").unbind("click").click(function(){
+                var cf = {};
+                cf.wfId = "wf_PTW0000100-m_20180706092847";
+                cf.subEv = "refer";
+                cf.pageNo = "1";
+                
+                loadPortletPost('wf_PTW0000100-m_20180706092847', null, {
+                    customHidden: (cf),
+                    outEffect: "drop",
+                    outOptions: {direction: "right"},
+                    outSpeed: "slow",
+                    inEffect: "drop",
+                    inOptions: {direction: "left"},
+                    inSpeed: "slow"
+                });
+            });
+        
+        
+        
+        
+    
+
+    
+    
+    </script>
+
+
+
+
+
+
+
+</div>
+
+                                      
+                                  </div>
+                              </div>
+                          
+                          
+                      
+                  
+                      
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                              <div class="portlet portlet-free" id="wf_PTW0000013_20120827093353-box">
+                                  <div class="loading" id="wf_PTW0000013_20120827093353-loading" style=""></div>
+                                  <div class="portlet-box" id="wf_PTW0000013_20120827093353">
+                                      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="portlet-title clearfix" id="wf_PTW0000013_20120827093353-title">
+
+
+    <img src="/muses/campusweb/theme/default/newportal/image/icon/info.png"><span>ログインユーザ情報</span>
+
+
+
+
+    
+    <input type="hidden" name="wfNm" id="wfNm" value="ログインユーザ情報">
+    <input type="hidden" name="wfNmEng" id="wfNmEng" value="Login use*********** ENG">
+    <input type="hidden" name="wfIcon" id="wfIcon" value="icon/info.png">
+    <input type="hidden" name="wfDeleteFlg" id="wfDeleteFlg" value="0">
+</div>
+
+
+
+
+
+
+
+
+
+<div id="portal-loginuser-info" class="clearfix portal-loginuser-info-1">
+    
+    <ul class="clearfix" id="portaluser">
+        <li><img id="portaluserimg" alt="" src="/muses/campusweb/theme/default/newportal/image/design/portal_user.png"></li>
+        <li class="txt">
+            
+            
+                <span>中植　正剛&nbsp;さん
+            
+            
+            
+            
+            </span>
+        </li>
+    </ul>
+    
+</div>
+
+
+
+
+
+
+</div>
+
+                                      
+                                  </div>
+                              </div>
+                          
+                          
+                      
+                  
+                      
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                              <div class="portlet portlet-free" id="wf_PTW0000012_20120826102956-box">
+                                  <div class="loading" id="wf_PTW0000012_20120826102956-loading" style=""></div>
+                                  <div class="portlet-box" id="wf_PTW0000012_20120826102956">
+                                      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="portlet-title clearfix" id="wf_PTW0000012_20120826102956-title">
+
+
+    <img src="/muses/campusweb/theme/default/newportal/image/icon/info.png"><span>システムメニュー</span>
+
+
+
+
+    
+    <input type="hidden" name="wfNm" id="wfNm" value="システムメニュー">
+    <input type="hidden" name="wfNmEng" id="wfNmEng" value="Syste****** ENG">
+    <input type="hidden" name="wfIcon" id="wfIcon" value="icon/info.png">
+    <input type="hidden" name="wfDeleteFlg" id="wfDeleteFlg" value="0">
+</div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="portal-system-menu" class="clearfix portal-system-menu-1">
+
+
+  
+  
+  
+    
+    <ul class="clearfix btn" id="portalsmart"><li><img id="portalsmartimg" alt="" src="/muses/campusweb/theme/default/newportal/image/design/smartphone_page.png"></li><li class="txt"><span>スマホ版</span></li></ul>
+  
+  
+
+
+
+
+    <ul class="clearfix btn" id="portaltimer" title="クリックで延長"><li><img id="portaltimerimg" alt="" src="/muses/campusweb/theme/default/newportal/image/design/portal_timeout.png"></li><li class="txt"><span>残り約<span id="timeout-timer">40</span>分</span></li></ul>
+
+
+    
+  
+
+    
+    <ul class="clearfix btn" id="logout"><li><img id="logocelllogoutimg" alt="" src="/muses/campusweb/theme/default/newportal/image/design/logout.png"></li><li class="txt"><span>ログアウト</span></li></ul>
+
+
+
+
+</div>
+
+<script type="text/javascript">
+    $("#portallocale").unbind().hover(
+      hoverMenuOver, hoverMenuOut
+    ).click(function(){
+      reloadPortal(null, null, 'en_US');
+    });
+    $("#portalsmart").unbind().hover(
+      hoverMenuOver, hoverMenuOut
+    ).click(function(){
+      reloadPortal(null, null, 'ja_JP', true);
+    });
+    $("#portaltimer").unbind().hover(
+      hoverMenuOver, hoverMenuOut
+    ).click(function(){
+      extendSession();
+    });
+    $("#portalset").unbind().hover(
+      hoverMenuOver, hoverMenuOut
+    ).click(function(){
+      portalDesign();
+    });
+
+    $("#logout").unbind().hover(
+      hoverMenuOver, hoverMenuOut
+    ).click(function(){
+        
+        
+        
+            
+            
+                
+                document.location.href = "campussquare.do?_flowId=USW0009100-flow";
+            
+            
+        
+        
+        
+        return false;
+    });
+
+</script>
+
+<div id="wf_PTW0000012_20120826102956-dlg" class="display-hide">
+<div class="loading" id="wf_PTW0000012_20120826102956-dlg-box-loading"></div>
+<div id="wf_PTW0000012_20120826102956-dlg-box">
+</div>
+</div>
+
+
+
+
+
+
+</div>
+
+                                      
+                                  </div>
+                              </div>
+                          
+                          
+                      
+                  
+                      
+                  
+                      
+                  
+                      
+                  
+                  <div class="portlet-break end-of-dummy" id="end-of-dummy-header-h1" style="height: 1px;"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></div>
+              </div>
+              </div>
+            
+          </div>
+      </div>
+
+
+
+
+      
+      <div id="tab-span">
+          <div id="tab-area" style="margin-left: 10px; margin-right: inherit;">
+              <div id="tabtable" style="width: 2317px;">
+                  
+                      
+                          
+                          
+                              
+                          
+                          
+                          
+                          <div id="tab-home" class="tabcell tabcell-sel" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>HOME</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-kj" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>info@MUSES　(掲示板)</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-gk" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>Personal File　(学生情報)</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-rs" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>履修(Registration)</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-cr" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>時間割参照</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-kh" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>休補・補講・教室変更等</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-kh2" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>休講・補講等情報参照</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-aa" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p> 　出欠・　 代替対応(Attendance)</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-en" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>授業アンケート(Survey)</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-te" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>試験</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-si" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>成績(Grade)</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-ht" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>見込みチェック</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-li" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>諸資格</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-rc" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>履修カルテ</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-re" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>キャリア支援</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-gy" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>学友会</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-sb" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>シラバス(Syllabus)</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-kg" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>教員業績</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-co" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>教職員連絡先検索機能</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-sr" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>科研費管理</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-en2" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>一般アンケート</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-mi" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>M.I.C.(学生証・職員証他)</p></div>
+                      
+                
+                      
+                          
+                          
+                          
+                          
+                          <div id="tab-ot" class="tabcell" style="width: 69px; height: 84px;"><img src="/muses/campusweb/theme/default/newportal/image/icon/mainmanu5.png" style="width: 32px; height: 32px; margin-left: 18px;"><p>その他</p></div>
+                      
+                
+                <div id="tab-end-of-dummy" class="bmp-none float-clear"></div>
+              </div>
+          </div>
+
+          
+          <div id="tabmenu-span" style="margin-top: -1px;">
+              <div id="tabmenu-area" style="margin-left: 0px; margin-right: 0px;">
+                  <div id="tabmenutable" style="margin-left: 10px; width: 1817px;">
+                    <ul id="tabmenu-ul">
+                    
+                    
+                    
+                    
+                    
+                        
+                    
+                        
+                            
+                            
+                            
+                            
+                            
+                              
+                                
+                                
+                                
+                                
+                                
+                                <li class="menu-func"><span onclick="return loadPortletMenu('main','campussquare.do?_flowId=USW0009500-flow',{portletFlg: '0', mainWfId: 'main_USW0009500_menu'});">
+                                
+                                    <img src="/muses/campusweb/theme/default/newportal/image/icon/info.png">
+                                
+                                
+                                    お知らせ
+                                    
+                                
+                                </span></li>
+                                
+                                    
+                                      
+                                      
+                                    
+                                
+                              
+                              
+                            
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    
+                    
+                    </ul>
+                    <div class="bmp-none float-clear"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+    </div>
+</div>
+
+
+
+    
+    
+    
+        <script type="text/javascript">
+            $(document).ready(function(){
+                setTimeout(function(){
+                  loadPortletMenu('main', 'campussquare.do?_flowId=USW0009500-flow', {portletFlg: '0', mainWfId: 'main_USW0009500_menu'});
+                }, 50);
+            });
+        </script>
+    
+
+
+
+
+<div id="body-span" style="width: 1838px; padding-top: 189px;">
+
+    
+    
+      <div id="area-mt1-parent" style="display: none;">
+      <div id="area-mt1" class="portalarea">
+          
+          
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+          <div class="portlet-break end-of-dummy" id="end-of-dummy-header-mt1" style="height: 1px;"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></div>
+      </div>
+      </div>
+    
+    
+    
+    <div id="body-area" style="width: 1817px; margin-left: 10px; margin-right: inherit;">
+      <table id="portaltable">
+        <tbody>
+          
+          
+          <tr id="portalrow-top-sp">
+            <td id="portalarea-left-sp" class="portalarea-sp-hfix" rowspan="10"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></td>
+            <td id="portalarea-top-sp" class="portalarea-sp-vfix" colspan="7"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></td>
+            <td id="portalarea-right-sp" class="portalarea-sp-hfix" rowspan="10"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></td>
+          </tr>
+          
+          
+          
+          
+            <tr id="portalrow-header1" style="display: none;">
+              <td colspan="7" id="area-mh1-parent">
+                <div id="area-mh1" class="portalarea portalarea-row clear-fix">
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <div class="portlet-break end-of-dummy" id="end-of-dummy-mh1" style="height: 1px;"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></div>
+                </div>
+              </td>
+            </tr>
+            <tr id="portalrow-header1-sp" style="display: none;">
+              <td id="area-mh1-sp" class="portalarea-row-sp" colspan="7"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></td>
+            </tr>
+          
+          
+          
+          <tr id="portalrow-body">
+          
+            
+            <td id="area-m1-parent">
+                <div id="area-m1" class="portalarea">
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            
+                            
+                                
+                            
+                            
+                            
+                            
+                            
+                            
+                                <div class="portlet portlet-s portlet-break" id="wf_PTW0005200-s_20220409131731-box">
+                                    <div class="loading" id="wf_PTW0005200-s_20220409131731-loading" style=""></div>
+                                    <div class="portlet-box" id="wf_PTW0005200-s_20220409131731">
+                                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="portlet-title clearfix" id="wf_PTW0005200-s_20220409131731-title">
+
+
+    <img src="/muses/campusweb/theme/default/newportal/image/icon/infoman.png"><span>新着情報</span>
+
+
+
+
+    
+    <input type="hidden" name="wfNm" id="wfNm" value="新着情報">
+    <input type="hidden" name="wfNmEng" id="wfNmEng" value="What****** ENG">
+    <input type="hidden" name="wfIcon" id="wfIcon" value="icon/infoman.png">
+    <input type="hidden" name="wfDeleteFlg" id="wfDeleteFlg" value="1">
+</div>
+
+
+
+<script language="javascript">
+    function doPage(wfId, categoryCd, linkTo, id) {
+    	$("#" + wfId + "-WhatsNewForm input:hidden[name=wnId]").val(id);
+    	if ( categoryCd == 1) {
+    		// 掲示板通知
+    		loadPortletMain(linkTo);
+    	} else {
+    		loadWebMain(linkTo);
+    	}
+    	loadPortletPost(wfId, wfId+"-WhatsNewForm");
+        return false;
+    }
+</script>
+
+<form id="wf_PTW0005200-s_20220409131731-WhatsNewForm" name="wf_PTW0005200-s_20220409131731-WhatsNewForm" method="POST" action="/muses/campusweb/campusportal.do">
+  <input type="hidden" name="action" value="rwf">
+  <input type="hidden" name="tabId" value="*">
+  <input type="hidden" name="wfId" value="wf_PTW0005200-s_20220409131731">
+  <input type="hidden" name="wnId">
+  <input type="hidden" name="event" value="doUpdate">
+
+<div id="whatsnew-portlet">
+  <div class="box">
+    
+    
+        
+            
+            
+            <div class="mysch-portlet-title">
+                <img alt="　" src="/muses/campusweb/theme/default/newportal/image/icon/keiji.png">
+                <font color="blue">
+                    <string>
+                        未読掲示が
+                        <a href="javascript:void(0);" onclick="loadPortletMenu('main', 'campussquare.do?_flowId=KJW0001100-flow');">
+                            21件
+                        </a>
+                        あります！
+                    </string>
+                </font>
+            </div>
+        
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+  </div>
+</div>
+
+</form>
+
+
+
+
+
+
+</div>
+
+                                        
+                                    </div>
+                                </div>
+                            
+                            
+                        
+                    
+                        
+                            
+                            
+                                
+                            
+                            
+                            
+                            
+                            
+                            
+                                <div class="portlet portlet-s portlet-break" id="wf_PTW0005000-s_20201207191344-box">
+                                    <div class="loading" id="wf_PTW0005000-s_20201207191344-loading" style=""></div>
+                                    <div class="portlet-box" id="wf_PTW0005000-s_20201207191344">
+                                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="portlet-title clearfix" id="wf_PTW0005000-s_20201207191344-title">
+
+
+    <img src="/muses/campusweb/theme/default/newportal/image/icon/info.png"><span>リンク</span>
+
+
+
+
+    
+    <input type="hidden" name="wfNm" id="wfNm" value="リンク">
+    <input type="hidden" name="wfNmEng" id="wfNmEng" value="L*** ENG">
+    <input type="hidden" name="wfIcon" id="wfIcon" value="icon/info.png">
+    <input type="hidden" name="wfDeleteFlg" id="wfDeleteFlg" value="1">
+</div>
+
+
+<link rel="stylesheet" href="/muses/campusweb/theme/newportal/newportal.css" type="text/css">
+
+<script language="javascript">
+<!--
+    function doOpenWindow(url) {
+        SubWin = window.open(url);
+        return false;
+    }
+//-->
+</script>
+
+<form id="wf_PTW0005000-s_20201207191344-WebLinkForm" name="wf_PTW0005000-s_20201207191344-WebLinkForm" method="POST" action="/muses/campusweb/campusportal.do">
+    <input type="hidden" name="action" value="rwf">
+    <input type="hidden" name="tabId" value="*">
+    <input type="hidden" name="wfId" value="wf_PTW0005000-s_20201207191344">
+    <input type="hidden" name="event">
+  
+          
+             教員向け公開リンク
+             
+          
+      <div style="margin-left:10px;margin-top:4px">
+             <a href="http://www.mukogawa-u.ac.jp/" target="_blank" title="武庫川女子大学HP">武庫川女子大学HP</a>
+         </div><div style="margin-left:10px;margin-top:4px">
+             <a href="https://wisteria.mukogawa-u.ac.jp/muses/pages/com/site.htm" target="_blank" title="本サイトについて">本サイトについて</a>
+         </div><div style="margin-left:10px;margin-top:4px">
+             <a href="https://wisteria.mukogawa-u.ac.jp/muses/pages/com/privacy/PrivacyPolicy.htm" target="_blank" title="MUSESのプライバシーポリシー">MUSESのプライバシーポリシー</a>
+         </div><div style="margin-left:10px;margin-top:4px">
+             <a href="https://wisteria.mukogawa-u.ac.jp/muses/pages/com/officehour.htm" target="_blank" title="オフィスアワー">オフィスアワー</a>
+         </div><div style="margin-left:10px;margin-top:4px">
+             <a href="https://wisteria.mukogawa-u.ac.jp/muses/pages/com/toiawasemadoguchi.html" target="_blank" title="(学生用)MUSES問い合わせ先一覧">(学生用)MUSES問い合わせ先一覧</a>
+         </div><div style="margin-left:10px;margin-top:4px">
+             <a href="https://wisteria.mukogawa-u.ac.jp/muses/pages/qanda/QandA.html" target="_blank" title="MUSES Q＆A(学生用)一覧">MUSES Q＆A(学生用)一覧</a>
+         </div><div style="margin-left:10px;margin-top:4px">
+             <a href="https://wisteria.mukogawa-u.ac.jp/muses/pages/shinseisyo/kakusyushinsei.html" target="_blank" title="各種申請用紙出力（学生用）">各種申請用紙出力（学生用）</a>
+         </div><div style="margin-left:10px;margin-top:4px">
+             <a href="https://wisteria.mukogawa-u.ac.jp/muses/pages/shinseisyo/kyouinyou/kakusyushinsei.html" target="_blank" title=" 各種申請用紙出力（教員用）"> 各種申請用紙出力（教員用）</a>
+         </div><div style="margin-left:10px;margin-top:4px">
+             <a href="https://wisteria.mukogawa-u.ac.jp/muses/pages/qanda/kyouinyou/manual.html" target="_blank" title="(教員用)マニュアル・担当窓口">(教員用)マニュアル・担当窓口</a>
+         </div><div style="margin-left:10px;margin-top:4px">
+             <a href="https://www.edusys.jp/mukogawa-u/digitalbook/sg_daigaku/#target/page_no=29" target="_blank" title="サービス一覧">サービス一覧</a>
+         </div><div style="margin-left:10px;margin-top:4px">
+             <a href="https://wisteria.mukogawa-u.ac.jp/muses/pages/kyokasho/startpage.html" target="_blank" title="教科書選定DBサイト">教科書選定DBサイト</a>
+         </div><div style="margin-left:10px;margin-top:4px">
+             <a href="https://sprb.legal-square.com/HAS-Shohin/page/SJLogin.jsf" target="_blank" title="学院規程集">学院規程集</a>
+         </div><div style="margin-left:10px;margin-top:4px">
+             <a href="https://www.benrinet.co.jp/app/" target="_blank" title="物品購入申請（べんりねっと）">物品購入申請（べんりねっと）</a>
+         </div><div style="margin-left:10px;margin-top:4px">
+             <a href="https://kobuy.jp/PurchasePlatform/" target="_blank" title="物品購入申請（KOBUY）">物品購入申請（KOBUY）</a>
+         </div><table border="0" width="100%" style="word-break:break-all;">
+    
+      <tbody><tr></tr>
+      
+      <tr>
+         
+      </tr>
+      
+      <tr>
+         
+      </tr>
+      
+      <tr>
+         
+      </tr>
+      
+      <tr>
+         
+      </tr>
+      
+      <tr>
+         
+      </tr>
+      
+      <tr>
+         
+      </tr>
+      
+      <tr>
+         
+      </tr>
+      
+      <tr>
+         
+      </tr>
+      
+      <tr>
+         
+      </tr>
+      
+      <tr>
+         
+      </tr>
+      
+      <tr>
+         
+      </tr>
+      
+      <tr>
+         
+      </tr>
+      
+      <tr>
+         
+      </tr>
+      
+      <tr>
+         
+      </tr>
+      
+      
+  
+  </tbody></table>
+    <p><input type="button" value="Myﾘﾝｸ編集" onclick="loadPortletMenu('_blank', 'campussquare.do?_flowId=PTW0001100-flow');" class="btn-lightgreen ui-button ui-widget ui-state-default ui-corner-all" role="button" aria-disabled="false"></p>
+</form>
+
+
+
+
+
+
+</div>
+
+                                        
+                                    </div>
+                                </div>
+                            
+                            
+                        
+                    
+                        
+                    
+                    <div class="portlet-break end-of-dummy" id="end-of-dummy-1" style="height: 1px;"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></div>
+                </div>
+            </td>
+          
+            
+                <td id="area-m2-sp-parent"><div id="area-m2-sp" class="portalarea-sp"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></div></td>
+            
+            <td id="area-m2-parent">
+                <div id="area-m2" class="portalarea">
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            
+                            
+                                
+                            
+                            
+                            
+                            
+                            
+                                
+                                
+                                    
+                                
+                                <div class="portlet portlet-l portlet-break" id="main-frame" style="width: 1024px;">
+                                    <div class="loading" id="main-frame-div-loading" style="display: none;"></div>
+                                    <div class="portlet-box" id="main-frame-div" style="display: none;"></div>
+                                    <div class="loading" id="main-frame-if-loading" style="height: 100px; z-index: 9999; opacity: 1; display: none;"></div>
+                                    <iframe name="portlet-body" id="main-frame-if" scrolling="no" frameborder="0" framespacing="0" border="0" marginwidth="0" marginheight="0" title="" src="campussquare.do?_flowId=USW0009500-flow" style="z-index: 0; width: 1024px; display: inline; height: 369px;"></iframe>
+                                </div>
+                            
+                            
+                            
+                        
+                    
+                    <div class="portlet-break end-of-dummy" id="end-of-dummy-2" style="height: 1px;"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></div>
+                </div>
+            </td>
+          
+            
+                <td id="area-m3-sp-parent" style="display: none;"><div id="area-m3-sp" class="portalarea-sp"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></div></td>
+            
+            <td id="area-m3-parent" style="display: none;">
+                <div id="area-m3" class="portalarea">
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <div class="portlet-break end-of-dummy" id="end-of-dummy-3" style="height: 1px;"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></div>
+                </div>
+            </td>
+          
+            
+                <td id="area-m4-sp-parent" style="display: none;"><div id="area-m4-sp" class="portalarea-sp"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></div></td>
+            
+            <td id="area-m4-parent" style="display: none;">
+                <div id="area-m4" class="portalarea">
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <div class="portlet-break end-of-dummy" id="end-of-dummy-4" style="height: 1px;"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></div>
+                </div>
+            </td>
+          
+          </tr>
+          
+          
+          
+            <tr id="portalrow-footer1-sp" style="display: none;">
+              <td id="area-mf1-sp" class="portalarea-row-sp" colspan="7"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></td>
+            </tr>
+            <tr id="portalrow-footer1" style="display: none;">
+              <td colspan="7" id="area-mf1-parent">
+                <div id="area-mf1" class="portalarea portalarea-row clear-fix">
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <div class="portlet-break end-of-dummy" id="end-of-dummy-mf1" style="height: 1px;"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></div>
+                </div>
+              </td>
+            </tr>
+          
+            <tr id="portalrow-footer2-sp" style="display: none;">
+              <td id="area-mf2-sp" class="portalarea-row-sp" colspan="7"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></td>
+            </tr>
+            <tr id="portalrow-footer2" style="display: none;">
+              <td colspan="7" id="area-mf2-parent">
+                <div id="area-mf2" class="portalarea portalarea-row clear-fix">
+                    
+                    
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                    <div class="portlet-break end-of-dummy" id="end-of-dummy-mf2" style="height: 1px;"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></div>
+                </div>
+              </td>
+            </tr>
+          
+          
+          
+          <tr id="portalrow-bottom-sp">
+            <td id="portalarea-bottom-sp" class="portalarea-sp-vfix" colspan="7"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    
+    
+      <div id="area-mb1-parent" style="display: none;">
+      <div id="area-mb1" class="portalarea">
+          
+          
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+              
+          
+          <div class="portlet-break end-of-dummy" id="end-of-dummy-header-mb1" style="height: 1px;"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></div>
+      </div>
+      </div>
+    
+    
+</div>
+
+
+
+<div id="footer-span" style="width: 1838px;">
+    <div id="footer-area" style="width: 1817px; margin-left: 10px; margin-right: inherit;">
+    
+    </div>
+    
+            
+            
+              <div id="area-f1-parent" style="display: none;">
+              <div id="area-f1" class="portalarea">
+                  
+                  
+                  
+                      
+                  
+                      
+                  
+                      
+                  
+                      
+                  
+                      
+                  
+                      
+                  
+                  <div class="portlet-break end-of-dummy" id="end-of-dummy-header-f1" style="height: 1px;"><img src="/muses/campusweb/theme/default/newportal/image/util/sp.gif" class="space"></div>
+              </div>
+              </div>
+            
+</div>
+
+
+<div id="dummy-portlet-3s" class="display-none fixsize-3s"></div>
+<div id="dummy-portlet-2s" class="display-none fixsize-2s"></div>
+<div id="dummy-portlet-s" class="display-none fixsize-s"></div>
+<div id="dummy-portlet-m" class="display-none fixsize-m"></div>
+<div id="dummy-portlet-l" class="display-none fixsize-l"></div>
+
+
+<br>
+<br>
+<br>
+
+
+
+</body></html>
