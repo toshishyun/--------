@@ -9,53 +9,73 @@ PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
-# 共通認証モジュールからサインイン処理を呼び出す
 from common.auth.signin_module import sign_in
-# services/muses 内の MUSES 操作モジュールから各関数をインポート
+# services/muses/muses_controller.py から MUSES への遷移関連の関数をインポート
 from services.muses.muses_controller import navigate_to_muses, navigate_to_student_info
+# services/muses/automation/role_experience.py から、役職経験一覧出力処理をインポート
+from services.muses.automation.role_experience import run_role_experience_analysis
 
 def main_menu_controller():
-    # まずサインインして WebDriver を取得
+    # まず共通認証でサインインして WebDriver を取得
     driver = sign_in()
     if driver is None:
         messagebox.showerror("エラー", "サインインに失敗しました。システムを終了します。")
         sys.exit(1)
     
-    # 1つのウィンドウ内で画面切替（SPA風）を行うため、Frame を用いる
+    # メインウィンドウを作成
     root = tk.Tk()
-    root.title("メインメニュー")
-    root.geometry("300x250")
+    root.title("各種処理自動化")
+    root.geometry("400x400")
     
-    # メインメニュー画面と各サービス画面用の Frame を作成
-    main_frame = tk.Frame(root)
-    muses_frame = tk.Frame(root)
-    student_frame = tk.Frame(root)
+    # 画面全体のFrameを作成し、上部にタイトルラベルを配置
+    container = tk.Frame(root)
+    container.pack(fill="both", expand=True)
     
-    for frame in (main_frame, muses_frame, student_frame):
-        frame.grid(row=0, column=0, sticky="nsew")
+    title_label = tk.Label(container, text="各種処理自動化", font=("Arial", 16, "bold"))
+    title_label.pack(pady=10)
     
-    # --- main_frame: メインメニュー ---
-    tk.Label(main_frame, text="サービスを選択してください", font=("Arial", 12)).pack(pady=10)
+    # --- MUSES セクション ---
+    muses_header = tk.Label(container, text="MUSES", font=("Arial", 14, "underline"))
+    muses_header.pack(pady=5)
     
-    def on_muses():
+    # 「学生情報」ボタン（単体で学生情報ページへ遷移）
+    def on_student_info():
         try:
-            # MUSES への遷移処理は services/muses/muses_controller.py の関数で実行
             navigate_to_muses(driver)
-        except Exception as e:
-            messagebox.showerror("エラー", f"MUSES への遷移中にエラーが発生しました:\n{e}")
-        muses_frame.tkraise()
-    
-    def on_student():
-        try:
-            # 学生情報（仮）の遷移処理
             navigate_to_student_info(driver)
         except Exception as e:
             messagebox.showerror("エラー", f"学生情報ページへの遷移中にエラーが発生しました:\n{e}")
-        student_frame.tkraise()
     
-    tk.Button(main_frame, text="MUSESに遷移", width=20, command=on_muses).pack(pady=5)
-    tk.Button(main_frame, text="学生情報（仮）", width=20, command=on_student).pack(pady=5)
+    tk.Button(container, text="学生情報", width=20, command=on_student_info).pack(pady=5)
     
+    # 「役職経験一覧」ボタン（学生情報画面に遷移した上で、役職経験一覧表を出力）
+    def on_role_experience():
+        try:
+            navigate_to_muses(driver)
+            navigate_to_student_info(driver)
+            run_role_experience_analysis(driver)
+        except Exception as e:
+            messagebox.showerror("エラー", f"役職経験一覧表の出力中にエラーが発生しました:\n{e}")
+    
+    tk.Button(container, text="役職経験一覧", width=20, command=on_role_experience).pack(pady=5)
+    
+    # --- ダミー1 セクション ---
+    dummy1_header = tk.Label(container, text="ダミー1", font=("Arial", 14, "underline"))
+    dummy1_header.pack(pady=5)
+    
+    tk.Button(container, text="ダミー1の処理", width=20,
+              command=lambda: messagebox.showinfo("ダミー1", "ダミー1の処理を実行します。")
+             ).pack(pady=5)
+    
+    # --- ダミー2 セクション ---
+    dummy2_header = tk.Label(container, text="ダミー2", font=("Arial", 14, "underline"))
+    dummy2_header.pack(pady=5)
+    
+    tk.Button(container, text="ダミー2の処理", width=20,
+              command=lambda: messagebox.showinfo("ダミー2", "ダミー2の処理を実行します。")
+             ).pack(pady=5)
+    
+    # システム終了ボタン
     def on_exit():
         try:
             driver.quit()
@@ -63,32 +83,8 @@ def main_menu_controller():
             pass
         root.destroy()
     
-    tk.Button(main_frame, text="システム終了", width=20, command=on_exit).pack(pady=5)
+    tk.Button(container, text="システム終了", width=20, command=on_exit).pack(pady=20)
     
-    # --- muses_frame: MUSES サブメニュー（ダミー） ---
-    tk.Label(muses_frame, text="MUSES サブメニュー (ダミー)", font=("Arial", 12)).pack(pady=10)
-    tk.Button(muses_frame, text="MUSES情報を表示",
-              command=lambda: messagebox.showinfo("MUSES情報", "ここに MUSES の情報を表示します。")
-             ).pack(pady=5)
-    tk.Button(muses_frame, text="MUSES操作をシミュレーション",
-              command=lambda: messagebox.showinfo("MUSES操作", "ここに MUSES の操作シミュレーションを行います。")
-             ).pack(pady=5)
-    tk.Button(muses_frame, text="メインメニューに戻る", command=lambda: main_frame.tkraise()
-             ).pack(pady=10)
-    
-    # --- student_frame: 学生情報（仮）サブメニュー（ダミー） ---
-    tk.Label(student_frame, text="学生情報（仮） サブメニュー (ダミー)", font=("Arial", 12)).pack(pady=10)
-    tk.Button(student_frame, text="学生情報を表示",
-              command=lambda: messagebox.showinfo("学生情報", "ここに学生情報を表示します。")
-             ).pack(pady=5)
-    tk.Button(student_frame, text="学生情報操作をシミュレーション",
-              command=lambda: messagebox.showinfo("学生情報操作", "ここに学生情報の操作シミュレーションを行います。")
-             ).pack(pady=5)
-    tk.Button(student_frame, text="メインメニューに戻る", command=lambda: main_frame.tkraise()
-             ).pack(pady=10)
-    
-    # 初期表示は main_frame
-    main_frame.tkraise()
     root.mainloop()
 
 if __name__ == "__main__":
